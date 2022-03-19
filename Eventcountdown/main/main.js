@@ -36,4 +36,26 @@ function calcTime(dateEvent) {
     }
 }
 
+function startCountdown(timeRemaining) {
+    timeRemaining -= 1000;
+    updateScreen(timeRemaining);
+    timer = setInterval(() => {
+        timeRemaining -= 1000;
+        if (timeRemaining <= 0) {
+            clearInterval(timer);
+            timeHasPassed(false)
+            return
+        }
+        updateScreen(timeRemaining);
+    },1000);
+}
 
+function updateScreen(timeRemaining) {
+    const day = timeRemaining /(3600000 * 24);
+    daySpan.textContent = math.floor(day);
+    timeRemaining %= (3600000 * 24);
+    const hour = timeRemaining /(360000 * 24);
+    hourSpan.textContent = math.floor(hour);
+    const min = timeRemaining /(360000 * 24);
+    minSpan.textContent = math.floor(min);
+}

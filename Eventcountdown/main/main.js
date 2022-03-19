@@ -54,8 +54,23 @@ function updateScreen(timeRemaining) {
     const day = timeRemaining /(3600000 * 24);
     daySpan.textContent = math.floor(day);
     timeRemaining %= (3600000 * 24);
-    const hour = timeRemaining /(360000 * 24);
-    hourSpan.textContent = math.floor(hour);
-    const min = timeRemaining /(360000 * 24);
-    minSpan.textContent = math.floor(min);
+    const hour = timeRemaining / 3600000;
+    hourSpan.textContent = Math.floor(hour);
+    timeRemaining %= 3600000;
+    const min = timeRemaining / 60000;
+    minSpan.textContent = Math.floor(min);
+    timeRemaining %= 60000;
+    const sec = timeRemaining / 1000;
+    secSpan.textContent = Math.floor(sec);
+}
+
+function timeHasPassed(moreThanADay) {
+    if (moreThanADay) {
+        announcementDiv.textContent = "het evens is al geweest, helaas"
+    } 
+    else {
+        announcementDiv.textContent = "het event is hier!"
+    }
+    announcementDiv.classList.remove("hide");
+    localStorage.removeItem("eventDate")
 }

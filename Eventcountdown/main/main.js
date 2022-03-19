@@ -7,7 +7,7 @@ const hourSpan = document.querySelector(".hour");
 const minSpan = document.querySelector(".min");
 const secSpan = document.querySelector(".sec");
 const announcementDiv = document.querySelector(".announcement");
-let time = null;
+let timer = null;
 
 button.addEventListener("click", () => {
     calcTime(new Date(timeInput.value));
@@ -24,6 +24,7 @@ function start() {
 }
 
 function calcTime(dateEvent) {
+    const announcementDiv = document.querySelector(".announcement");
     announcementDiv.classList.add("hide");
     clearInterval(timer);
     const dateToday = new Date();
@@ -52,7 +53,7 @@ function startCountdown(timeRemaining) {
 
 function updateScreen(timeRemaining) {
     const day = timeRemaining /(3600000 * 24);
-    daySpan.textContent = math.floor(day);
+    daySpan.textContent = Math.floor(day);
     timeRemaining %= (3600000 * 24);
     const hour = timeRemaining / 3600000;
     hourSpan.textContent = Math.floor(hour);
